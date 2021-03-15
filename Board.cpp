@@ -17,34 +17,38 @@ namespace ariel {
     void Board::resizeBoard(int r, int c){        
         this->rows = r;
         this->cols = c;
-        cout << "resizing to " << r << " x " << c << endl;
         this->board.resize(r);
-        for (int i = 0; i < r ; ++i){
+        for (int i = 0; i < r ; i++){
             this->board[i].resize(c, '_');
         }
+        cout << "Successfully resizized to " << r << " x " << c << endl;
     }
 
     void Board::post(int row, int column, Direction direction, string message) {
-        int length = message.size();
+        cout << "---------------------------------------------\n"; 
+        cout << "\t\tposting: \"" << message << "\" in " << row <<"x" << column << "\n";
+        int msg_len = message.size();
         if(direction == Direction::Horizontal){
-            int r = std::max(this->rows, row);
-            int c = std::max(this->cols, column + length);
+            int r = std::max(this->rows, row+1);
+            int c = std::max(this->cols, column + msg_len +1);
             resizeBoard(r, c);
             /* posting: */
-            for(int i=0; i<length; i++){
-                this->board[row][column+i] = message[i];
+            for(int i=0; i<msg_len; i++){
+                this->board.at(row).at(column+i) = message[i];
             }
         }
         
         if(direction == Direction::Vertical){
-            int r = std::max(this->rows, row + length);
-            int c = std::max(this->cols, column);
+            int r = std::max(this->rows, row + msg_len + 1);
+            int c = std::max(this->cols, column + 1);
             resizeBoard(r, c);
             /* posting: */
-            for(int i=0; i<length; i++){
+            for(int i=0; i<msg_len; i++){
                 this->board[row+i][column] = message[i];
+                cout << this->board[row+i][column] << "\n";
             }    
         }
+        cout << "Successfully posted: " << message << " in: " << row << " x " << column << endl;
         show();
     }
 //--------------------------------------------------------------------------------------------------
@@ -74,9 +78,9 @@ namespace ariel {
         cout << "rows: " << this->rows << " cols: " << this->cols << "\n\n"; 
         for (int i = 0; i < this->rows; i++) {
             for (int j = 0; j < this->cols; j++) {
-                cout << this->board[i][j];
+                cout << this->board[i][j] << " ";
             }
-            cout << "\n";
+            cout << "\n\n";
         }
         cout << "\n";
     }

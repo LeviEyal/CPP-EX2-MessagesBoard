@@ -1,16 +1,19 @@
 #include <string>
-#include <vector>
+#include <map>
 #include "Direction.hpp"
 using namespace std;
+
+struct node{
+    char val = '_';
+};
 
 namespace ariel {
     class Board {
         uint rows;
         uint cols;
-        vector<vector<char>> board;
-        void resizeBoard(uint r, uint c);
+        map<uint, map<uint, node>> board;
     public:
-        Board() { }
+        Board() { rows = cols = 1; }
         ~Board() { }
         void post(uint row, uint column, Direction direction, string message);
         std::string read(uint row, uint column, Direction direction, uint length);

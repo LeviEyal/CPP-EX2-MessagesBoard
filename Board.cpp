@@ -13,17 +13,17 @@ using namespace std;
 
 namespace ariel {
 
-    void Board::resizeBoard(int r, int c){        
+    void Board::resizeBoard(uint r, uint c){        
         this->rows = r;
         this->cols = c;
         this->board.resize(r);
-        for (int i = 0; i < r ; i++){
-            this->board[i].resize(c, '_');
+        for (uint i = 0; i < r ; i++){
+            (this->board)[i].resize(c, '_');
         }
     }
 
-    void Board::post(int row, int column, Direction direction, string message) {
-        int msg_len = message.size();
+    void Board::post(uint row, uint column, Direction direction, string message) {
+        uint msg_len = message.size();
         bool flag = (direction == Direction::Horizontal);
         if(flag){
             resizeBoard(std::max(this->rows, row+1),
@@ -34,31 +34,32 @@ namespace ariel {
                         std::max(this->cols, column + 1));
         }
         /* posting: */
-        for(int i=0; i<msg_len; i++){
-            this->board[row][column] = message[i];
+        for(char ch: message){
+            this->board[row][column] = ch;
             flag? column++ : row++;
         }    
     }
 //--------------------------------------------------------------------------------------------------
-    string Board::read(int row, int column, Direction direction, int length) {
+    string Board::read(uint row, uint column, Direction direction, uint length) {
         string ans;
         bool flag = (direction == Direction::Horizontal);
         try {
-            for(int i=0; i<length; i++){
+            for(uint i=0; i<length; i++){
                 ans += this->board.at(row).at(column);
                 flag? column++ : row++;
             }
         }
         catch(const std::exception& e) {
-            cout << "out of the the board!" << endl;
+            // cout << "out of the the board!" << endl;
+            throw out_of_range("out of the the board!");
         }
         return ans;
     }
 //--------------------------------------------------------------------------------------------------
     void Board::show() {
         cout << "The board: \nrows: " << this->rows << " cols: " << this->cols << "\n\n"; 
-        for (int i = 0; i < this->rows; i++) {
-            for (int j = 0; j < this->cols; j++) {
+        for (uint i = 0; i < this->rows; i++) {
+            for (uint j = 0; j < this->cols; j++) {
                 cout << this->board[i][j] << " ";
             }
             cout << "\n\n";

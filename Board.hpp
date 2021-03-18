@@ -5,19 +5,15 @@ using namespace std;
 
 namespace ariel {
     class Board {
-        int rows;
-        int cols;
-        vector<vector<char>> board; 
+        uint rows;
+        uint cols;
+        vector<vector<char>> board;
+        void resizeBoard(uint r, uint c);
     public:
-        Board() {
-            board = vector<vector<char>>(3 , vector<char> (3, '_'));
-            rows = 3;
-            cols = 3;
-        }
+        Board() { }
         ~Board() { }
-        void post(int row, int column, Direction direction, std::string message);
-        std::string read(int row, int column, Direction direction, int length);
+        void post(uint row, uint column, Direction direction, string message);
+        std::string read(uint row, uint column, Direction direction, uint length);
         void show();
-        void resizeBoard(int r, int c);
     };
 }

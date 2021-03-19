@@ -45,7 +45,27 @@ TEST_CASE("check columns resizing"){
     // b.show();
     // cout << boardRows(b) << endl;
     CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
-    CHECK_THROWS(string s = b.read(20,0,Direction::Horizontal,2));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
+    CHECK_NOTHROW(b.post(5,5,Direction::Vertical,"abcd"));
 }
 
 // TEST_CASE("check rows resizing"){

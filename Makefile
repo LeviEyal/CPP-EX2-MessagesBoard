@@ -10,8 +10,17 @@ OBJECTS=$(subst .cpp,.o,$(SOURCES))
 run: demo
 	./$^
 
+runmain: main
+	./$^
+
+runtest: test
+	./$^
+
 demo: Demo.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o demo
+
+main: main.o $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o main
 
 test: TestCounter.o Test.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o test

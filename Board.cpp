@@ -12,15 +12,34 @@
 using namespace std;
 
 namespace ariel {
+    /**
+     * @brief Post a message on the board on a given position.
+     * 
+     * @param row       The row number of the position
+     * @param column    The column number of the position
+     * @param direction The direction - wheter Horizontal of Vertical
+     * @param message   The message as a string
+     */
     void Board::post(uint row, uint column, Direction direction, string message) {
         for(char ch: message){
+            this->maxRaw = max(this->maxRaw, row);
+            this->maxCol = max(this->maxCol, column);
+            this->minRaw = min(this->minRaw, row);
+            this->minCol = min(this->minCol, column);
             this->board[row][column].val = ch;
             (direction == Direction::Horizontal)? column++ : row++;
-            this->rows = std::max(this->rows, row);
-            this->cols = std::max(this->cols, column);
         }
     }
-//--------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
+    /**
+     * @brief Read a message from the messages board from a given position
+     * 
+     * @param row       The row number of the position
+     * @param column    The column number of the position
+     * @param direction The direction - wheter Horizontal of Vertical
+     * @param length    The length of the message to read from the board
+     * @return string   The string that the method read
+     */
     string Board::read(uint row, uint column, Direction direction, uint length) {
         string ans;
         for(uint i=0; i<length; i++){
@@ -29,11 +48,13 @@ namespace ariel {
         }
         return ans;
     }
-//--------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
+    /**
+     * @brief Draw the board with all the posted messages on.
+     */
     void Board::show() {
-        cout << "The board: \nrows: " << this->rows << " cols: " << this->cols << "\n\n";
-        for (uint i = 0; i <= this->rows; i++) {
-            for (uint j = 0; j <= this->cols; j++) {
+        for (uint i = this->minRaw; i <= this->maxRaw; i++) {
+            for (uint j = this->minCol; j <= this->maxCol; j++) {
                 cout << this->board[i][j].val << " ";
             }
             cout << "\n\n";

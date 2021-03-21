@@ -15,14 +15,22 @@ using namespace std;
 
 int main() {
 	ariel::Board board;
-	board.post(/*row=*/0, /*column=*/0, Direction::Horizontal, "Alon");
-	// board.post(/*row=*/0, /*column=*/7, Direction::Vertical, "Finneshtein");
-	// board.post(/*row=*/2, /*column=*/9, Direction::Horizontal, "is");
-	// board.post(/*row=*/3, /*column=*/12, Direction::Vertical, "the");
-	board.post(/*row=*/5, /*column=*/15, Direction::Horizontal, "gayest");
-	// board.post(/*row=*/10, /*column=*/11, Direction::Horizontal, "in");
-	// board.post(/*row=*/10, /*column=*/16, Direction::Vertical, "the");
-	// board.post(/*row=*/10, /*column=*/19, Direction::Vertical, "world!");
+	// board.post(/*row=*/0, /*column=*/0, Direction::Horizontal, "");
+	// board.post(/*row=*/0, /*column=*/7, Direction::Vertical, "");
+	// board.post(/*row=*/2, /*column=*/9, Direction::Horizontal, "");
+	// board.post(/*row=*/3, /*column=*/12, Direction::Vertical, "");
+	// board.post(/*row=*/5, /*column=*/15, Direction::Horizontal, "");
+	// board.post(/*row=*/10, /*column=*/11, Direction::Horizontal, "");
+	// board.post(/*row=*/10, /*column=*/16, Direction::Vertical, "");
+	// board.post(/*row=*/10, /*column=*/19, Direction::Vertical, "");
+	board.post(/*row=*/100+0, /*column=*/100+0, Direction::Horizontal, "Alon");
+	board.post(/*row=*/100+0, /*column=*/100+7, Direction::Vertical, "Fireshtein");
+	board.post(/*row=*/100+2, /*column=*/100+9, Direction::Horizontal, "is");
+	board.post(/*row=*/100+3, /*column=*/100+12, Direction::Vertical, "the");
+	board.post(/*row=*/100+5, /*column=*/100+15, Direction::Horizontal, "gayest");
+	board.post(/*row=*/100+10, /*column=*/100+11, Direction::Horizontal, "in");
+	board.post(/*row=*/100+10, /*column=*/100+16, Direction::Vertical, "the");
+	board.post(/*row=*/100+10, /*column=*/100+19, Direction::Vertical, "world!");
 
 	board.show();
 

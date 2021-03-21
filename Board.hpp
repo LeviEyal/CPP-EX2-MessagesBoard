@@ -2,7 +2,6 @@
 #include <map>
 #include "Direction.hpp"
 using namespace std;
-using eyal = ariel::Direction;
 
 struct node{
     char val = '_';
@@ -10,11 +9,14 @@ struct node{
 
 namespace ariel {
     class Board {
-        uint rows;
-        uint cols;
+        uint minRaw, maxRaw;
+        uint minCol, maxCol;
         map<uint, map<uint, node> > board;
     public:
-        Board() { rows = cols = 0; }
+        Board() { 
+            maxRaw =  maxCol = 0;
+            minRaw = minCol = INT8_MAX;
+        }
         ~Board() { }
         void post(uint row, uint column, Direction direction, string message);
         std::string read(uint row, uint column, Direction direction, uint length);

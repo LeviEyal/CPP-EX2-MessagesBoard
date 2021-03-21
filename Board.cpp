@@ -12,57 +12,52 @@
 using namespace std;
 
 namespace ariel {
-
-    void Board::resizeBoard(int r, int c){        
-        this->rows = r;
-        this->cols = c;
-        this->board.resize(r);
-        for (int i = 0; i < r ; i++){
-            this->board[i].resize(c, '_');
+    /**
+     * @brief Post a message on the board on a given position.
+     * 
+     * @param row       The row number of the position
+     * @param column    The column number of the position
+     * @param direction The direction - wheter Horizontal of Vertical
+     * @param message   The message as a string
+     */
+    void Board::post(uint row, uint column, Direction direction, string message) {
+        for(char ch: message){
+            this->maxRaw = max(this->maxRaw, row);
+            this->maxCol = max(this->maxCol, column);
+            this->minRaw = min(this->minRaw, row);
+            this->minCol = min(this->minCol, column);
+            this->board[row][column].val = ch;
+            (direction == Direction::Horizontal)? column++ : row++;
         }
     }
-
-    void Board::post(int row, int column, Direction direction, string message) {
-        int msg_len = message.size();
-        bool flag = (direction == Direction::Horizontal);
-        if(flag){
-            resizeBoard(std::max(this->rows, row+1),
-                        std::max(this->cols, column + msg_len +1));
-        }
-        else {
-            resizeBoard(std::max(this->rows, row + msg_len + 1), 
-                        std::max(this->cols, column + 1));
-        }
-        /* posting: */
-        for(int i=0; i<msg_len; i++){
-            this->board[row][column] = message[i];
-            flag? column++ : row++;
-        }    
-    }
-//--------------------------------------------------------------------------------------------------
-    string Board::read(int row, int column, Direction direction, int length) {
+//----------------------------------------------------------------------------------------------
+    /**
+     * @brief Read a message from the messages board from a given position
+     * 
+     * @param row       The row number of the position
+     * @param column    The column number of the position
+     * @param direction The direction - wheter Horizontal of Vertical
+     * @param length    The length of the message to read from the board
+     * @return string   The string that the method read
+     */
+    string Board::read(uint row, uint column, Direction direction, uint length) {
         string ans;
-        bool flag = (direction == Direction::Horizontal);
-        try {
-            for(int i=0; i<length; i++){
-                ans += this->board.at(row).at(column);
-                flag? column++ : row++;
-            }
-        }
-        catch(const std::exception& e) {
-            cout << "out of the the board!" << endl;
+        for(uint i=0; i<length; i++){
+            ans += this->board[row][column].val;
+            (direction == Direction::Horizontal)? column++ : row++;
         }
         return ans;
     }
-//--------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
+    /**
+     * @brief Draw the board with all the posted messages on.
+     */
     void Board::show() {
-        cout << "The board: \nrows: " << this->rows << " cols: " << this->cols << "\n\n"; 
-        for (int i = 0; i < this->rows; i++) {
-            for (int j = 0; j < this->cols; j++) {
-                cout << this->board[i][j] << " ";
+        for (uint i = this->minRaw; i <= this->maxRaw; i++) {
+            for (uint j = this->minCol; j <= this->maxCol; j++) {
+                cout << this->board[i][j].val << " ";
             }
             cout << "\n\n";
         }
-        cout << "\n";
     }
 }

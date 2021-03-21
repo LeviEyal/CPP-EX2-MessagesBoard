@@ -21,11 +21,11 @@ namespace ariel {
      * @param message   The message as a string
      */
     void Board::post(uint row, uint column, Direction direction, string message) {
+        this->maxRaw = max(this->maxRaw, row);
+        this->maxCol = max(this->maxCol, column);
+        this->minRaw = min(this->minRaw, row);
+        this->minCol = min(this->minCol, column);
         for(char ch: message){
-            this->maxRaw = max(this->maxRaw, row);
-            this->maxCol = max(this->maxCol, column);
-            this->minRaw = min(this->minRaw, row);
-            this->minCol = min(this->minCol, column);
             this->board[row][column].val = ch;
             (direction == Direction::Horizontal)? column++ : row++;
         }

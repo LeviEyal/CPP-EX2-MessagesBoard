@@ -20,7 +20,7 @@ namespace ariel {
      * @param direction The direction - wheter Horizontal of Vertical
      * @param message   The message as a string
      */
-    void Board::post(uint row, uint column, Direction direction, string message) {
+    void Board::post(uint row, uint column, Direction direction, string const &message) {
         this->maxRaw = max(this->maxRaw, row);
         this->maxCol = max(this->maxCol, column);
         this->minRaw = min(this->minRaw, row);

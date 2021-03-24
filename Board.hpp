@@ -18,8 +18,8 @@ namespace ariel {
             minRaw = minCol = INT8_MAX;
         }
         ~Board() { }
-        void post(uint row, uint column, Direction direction, string message);
-        std::string read(uint row, uint column, Direction direction, uint length);
+        void post(uint row, uint column, Direction direction, string const &message);
+        string read(uint row, uint column, Direction direction, uint length);
         void show();
     };
 }
